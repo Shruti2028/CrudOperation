@@ -17,12 +17,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class CrudOperationController {
 
     @Autowired
     UserOperationService userOperationService;
 
-    // http://localhost:8080/crud/post
+    // http://localhost:8080/user/post
     @PostMapping("/post")
     public ResponseEntity<?> postUser(@RequestBody UserRequest userReq) {
 

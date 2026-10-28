@@ -21,7 +21,7 @@ public class CrudOperationLoginController {
     @Autowired
     LoginService loginService;
 
-    //http:/localhost:8088/user/login
+    //http://localhost:8080/user/login
     //CREATE PROFILE
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -44,7 +44,7 @@ public class CrudOperationLoginController {
     }
 
     //DELETE PROFILE
-    //http:/localhost:8088/user/delete/
+    //http://localhost:8080/user/delete/
     @PatchMapping("/delete/{id}")
     public ResponseEntity<?> deleteUserProfile(@PathVariable long id) {
         boolean deleteResult = loginService.DeleteMethodService(id);
