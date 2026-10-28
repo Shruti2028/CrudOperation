@@ -24,11 +24,11 @@ public class CrudOperationController {
 
     // http://localhost:8080/crud/post
     @PostMapping("/post")
-    public ResponseEntity<?> postUser(@RequestBody UserRequest userReq){
+    public ResponseEntity<?> postUser(@RequestBody UserRequest userReq) {
 
         UserResponse userResponse = userOperationService.postUser(userReq);
-       // System.out.println(userResponse);
-        ApiResponse res=new ApiResponse();
+        // System.out.println(userResponse);
+        ApiResponse res = new ApiResponse();
         res.setStatus_code(201);
         res.setMessage("register succesfully");
         res.setError(null);
@@ -38,9 +38,9 @@ public class CrudOperationController {
 
     // http://localhost:8080/user/get-all
     @GetMapping("/get-all")
-    public ResponseEntity<?> getAllUser(){
-         List<UserRegs> users  = userOperationService.getAllUser();
-        ApiResponse res=new ApiResponse();
+    public ResponseEntity<?> getAllUser() {
+        List<UserRegs> users = userOperationService.getAllUser();
+        ApiResponse res = new ApiResponse();
         res.setStatus_code(200);
         res.setMessage("User get succussfully");
         res.setError(null);
@@ -52,14 +52,23 @@ public class CrudOperationController {
     //  http://localhost:8080/user/1791220834074
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable("id") long id) {
-       Optional<UserRegs> user=userOperationService.getUserById(id);
-        ApiResponse res=new ApiResponse();
-      
-        res.setStatus_code(200);
-        res.setMessage("User Data Get Successfully");
-        res.setError(null);
-        res.setResponse(user);
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        UserRegs userResponse = userOperationService.getUserById(id);
+        if (userResponse != null) {
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setStatus_code(201);
+            apiResponse.setMessage("user get successfully");
+            apiResponse.setError(null);
+            apiResponse.setResponse(userResponse);
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        } else {
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setStatus_code(204);
+            apiResponse.setMessage("user get successfully");
+            apiResponse.setError(null);
+            apiResponse.setResponse(userResponse);
+            return new ResponseEntity<>(apiResponse, HttpStatus.NO_CONTENT);
+        }
+
     }
 
 }

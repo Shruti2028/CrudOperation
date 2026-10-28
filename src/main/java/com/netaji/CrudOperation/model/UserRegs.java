@@ -90,6 +90,20 @@ public class UserRegs {
     public void setStatus(boolean status) {
         this.status = status;
     }
+    @Override
+    public String toString() {
+        return "UserRegs{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", mobileNo=" + mobileNo +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", modifiedDate='" + modifiedDate + '\'' +
+                ", deleteDate='" + deleteDate + '\'' +
+                ", status=" + status +
+                '}';
+    }
 
 }
 
